@@ -1,0 +1,26 @@
+<h2>Mes Produits</h2>
+
+<ul>
+    @for (c of listeCategories; track c){
+        <li (click)="onSelectCategorie(c)"
+        [class.selected]="c==categorie">{{c}}</li>
+    }
+</ul>
+
+@if (categorie) {
+
+    <h3>produit de la catégorie {{categorie}} :</h3>
+
+    <table border="1">
+        <tr> <th>ref</th> <th>label</th> <th>prix</th> </tr>
+        @for(p of listeProduits; track p.ref){
+            <tr>
+                <td>{{p.ref}}</td>
+                <td>{{p.label}}</td>
+                <td>{{p.prix}}</td>
+            </tr>
+        } 
+    </table>
+    
+
+}

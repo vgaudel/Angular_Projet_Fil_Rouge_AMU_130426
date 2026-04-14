@@ -1,0 +1,35 @@
+import { Component } from '@angular/core';
+import { IProduit } from '../../interfaces/IProduit';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-produits',
+  imports: [FormsModule],
+  templateUrl: './produits.html',
+  styleUrl: './produits.scss',
+})
+export class Produits {
+
+  listeCategories : string[] = ['smartphone','laptop','accessoire'];
+  categorie: string = "";
+
+  tousLesProduits: IProduit[] = [
+    { ref: 'p1', label: 'iPhone 16', prix: 999, categorie: 'smartphone' },
+    { ref: 'p2', label: 'Samsung Galaxy S25', prix: 899, categorie: 'smartphone' },
+    { ref: 'p3', label: 'Google Pixel 9', prix: 799, categorie: 'smartphone' },
+    { ref: 'p4', label: 'MacBook Air M4', prix: 1299, categorie: 'laptop' },
+    { ref: 'p5', label: 'Dell XPS 15', prix: 1499, categorie: 'laptop' },
+    { ref: 'p6', label: 'Lenovo ThinkPad X1', prix: 1399, categorie: 'laptop' },
+    { ref: 'p7', label: 'AirPods Pro 3', prix: 279, categorie: 'accessoire' },
+    { ref: 'p8', label: 'Logitech MX Master 4', prix: 119, categorie: 'accessoire' },
+    { ref: 'p9', label: 'Clavier Keychron K8', prix: 89, categorie: 'accessoire' },
+  ];
+
+  listeProduits : IProduit[] =[];
+
+  onSelectCategorie(categorieChoisie : string){
+    this.categorie=categorieChoisie;
+    this.listeProduits = this.tousLesProduits.filter(p => p.categorie === this.categorie);
+  }
+
+}
