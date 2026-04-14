@@ -20,7 +20,7 @@ export class Tva {
 
   onCalculerTvaEtTtc() {
     this.calcul.tva = this.calcul.ht * this.calcul.taux / 100;
-    this.calcul.ttc = Number(this.calcul.ht) + Number(this.calcul.tva);
+    this.calcul.ttc = this.calcul.ht + this.calcul.tva;
   }
 
 

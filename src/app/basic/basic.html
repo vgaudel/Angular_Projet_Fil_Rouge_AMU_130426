@@ -10,7 +10,45 @@ Username : <input [(ngModel)]="username"><br>
 
 <div> username : {{username}} </div>
 
-<app-calculatrice></app-calculatrice>
-<app-couleurs></app-couleurs>
-<app-produits></app-produits>
-<app-tva></app-tva>
+<hr>
+
+<select [(ngModel)]="selectedComponent">
+    @for(comp of composants ; track comp){
+    <option [ngValue]="comp">{{comp}}</option>
+    }
+</select>
+
+
+@switch (selectedComponent) {
+    @case ('calculatrice'){
+    <app-calculatrice></app-calculatrice>
+    }
+    @case ('couleurs'){
+    <app-couleurs></app-couleurs>
+    }
+    @case ('produits'){
+    <app-produits></app-produits>
+    }
+    @case ('tva'){
+    <app-tva></app-tva>
+    }
+    @case ('signals'){
+    <app-signals></app-signals>
+    }
+    @case ('computed-signals'){
+    <app-computed-signals></app-computed-signals>
+    }
+    @case ('pipes'){
+    <app-pipes></app-pipes>
+    }
+     @case ('produits-parent'){
+    <app-produits-parent></app-produits-parent>
+    } 
+    @case ('tp-panier'){
+    <app-tp-panier></app-tp-panier>
+    }
+    @default {
+        <p> Sélectionnez un composant </p>
+    }
+
+}

@@ -1,0 +1,11 @@
+<h2>Exemple de computed signal avec le calcul de la TVA</h2>
+
+<label>PrixHT :
+    <input type="number" [(ngModel)]="prixHT" >
+</label>
+
+<label>TVA (%) : 
+    <input type="number" [(ngModel)]="tva" >
+</label>
+
+<div> {{prixTTC()}}</div>

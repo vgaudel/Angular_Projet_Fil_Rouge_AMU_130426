@@ -1,0 +1,6 @@
+<h2>Exemple de la directive @input</h2>
+
+
+@for (p of tousLesProduits; track p.ref){
+    <app-produit-enfant [produit]="p"/>
+}

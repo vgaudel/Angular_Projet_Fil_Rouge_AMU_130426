@@ -1,0 +1,54 @@
+<h2>🛒 Mini Panier d'Achat</h2>
+
+<!-- =============================================
+  Tableau du panier :
+  - Chaque ligne = un produit
+  - Les prix utilisent le pipe currency:'EUR'
+  - Les quantités utilisent le pipe number
+  - Les sous-totaux sont des computed() (réactifs)
+============================================= -->
+<table>
+  <thead>
+    <tr>
+      <th>Produit</th>
+      <th>Prix unitaire</th>
+      <th>Quantité</th>
+      <th>Sous-total</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (p of produits; track p.nom) {
+      <tr>
+        <td>{{ p.nom }}</td>
+        <!-- pipe currency : affiche le prix en euros -->
+        <td class="prix">{{ p.prix | currency:'EUR' }}</td>
+        <td class="quantite">
+          <!-- .update() modifie le signal de quantité -->
+          <button (click)="decrementer(p)">−</button>
+          <!-- pipe number : formate la quantité (ici entier) -->
+          <span>{{ p.quantite() | number:'1.0-0' }}</span>
+          <button (click)="incrementer(p)">+</button>
+        </td>
+        <!-- computed() sousTotal : se recalcule automatiquement -->
+        <td class="prix">{{ p.sousTotal() | currency:'EUR' }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<!-- =============================================
+  Récapitulatif avec remise
+============================================= -->
+<div class="recap">
+  <p>Total : <b>{{ total() | currency:'EUR' }}</b></p>
+
+  @if (tauxRemise() > 0) {
+    <!-- pipe percent : affiche le taux de remise -->
+    <p class="remise">
+      🎉 Remise de {{ tauxRemise() | percent }} appliquée (total > 50 €)
+    </p>
+    <p>Total après remise : <b class="total-final">{{ totalApresRemise() | currency:'EUR' }}</b></p>
+  } @else {
+    <p class="info">Ajoutez pour plus de 50 € pour bénéficier de 10% de remise !</p>
+  }
+</div>
